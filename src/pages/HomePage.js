@@ -1,5 +1,3 @@
-import './style.css'
-import 'bootstrap/dist/css/bootstrap.css';
 function HomePage() {
   return (
     <div className="App">
