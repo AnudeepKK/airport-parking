@@ -1,5 +1,7 @@
 import { useState } from "react";
+import moment from "moment";
 const SearchForm = () =>{
+        
         const [departureAirport,setDepartureAirport] = useState("");
         const [checkin,setCheckin] = useState('');
         const [checkout,setCheckout] = useState('');
@@ -30,9 +32,17 @@ const SearchForm = () =>{
             //event.target.value
             const {value} = e.target;
             setCheckout(value);
-            if(e.target){
-                seterrors({...errors,checkout:false})
+            if(moment(checkin) > moment(checkout))
+            {
+                seterrors((err) => ({ ...err, checkout: true }))
+    
             }
+            if (e.target.value) {
+                seterrors((err) => ({ ...err, checkout: false }))
+                } 
+            else {
+                seterrors((err) => ({ ...err, checkout: true }))
+                }
     
         }
     
@@ -42,15 +52,24 @@ const SearchForm = () =>{
             console.log(checkout)
             //event.target.value
             e.preventDefault();
-            if (departureAirport && checkin && checkout){
-                alert("Form has been submitted");
-            }else{
-                seterrors({
-                    departureAirport:!departureAirport,
-                    checkin:!checkin,
-                    checkout:!checkout
-                });
-            }
+            if(moment(checkin) > moment(checkout))
+        {
+            alert("Check In Date can't be greater than Check Out Date")
+            seterrors((err) => ({ ...err, checkout: true }))
+
+        }
+
+       else if(departureAirport && checkin && checkout)
+        {
+            alert("Form Submitted")
+        }
+        else{
+            seterrors({
+                departureAirport:!departureAirport,
+                checkin:!checkin,
+                checkout:!checkout
+            })
+        }
             
         }
     return(
