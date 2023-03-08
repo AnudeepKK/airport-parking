@@ -1,5 +1,5 @@
 import Footer from "./Footer";
-import Header from "./Header";
+// import Header from "./Header";
 import SearchForm from "./SearchForm";
 
 function HomePage() {
@@ -8,9 +8,9 @@ function HomePage() {
     <div className="App">
           <div id="app" className="generic">
         <div>
-            <app-header>
+            {/* <app-header>
                 <Header/>
-            </app-header>
+            </app-header> */}
             <div className="content">
                 <us-page-home inline-template>
                     <section id="home_page">
