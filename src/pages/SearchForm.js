@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import moment from "moment";
+import axios from "axios";
 const SearchForm = () =>{
         const today=moment().format('YYYY-MM-DD').toString();
         const tomrrow = moment().add(1,'days').format('YYYY-MM-DD').toString();
-        const [departureAirport,setDepartureAirport] = useState("");
+        const [departureAirport,setDepartureAirport] = useState("Dehli");
         const [checkin,setCheckin] = useState(today);
         const [checkout,setCheckout] = useState(tomrrow);
         const [errors,seterrors] =useState( {
@@ -73,6 +74,17 @@ const SearchForm = () =>{
         }
             
         }
+        const [records,setRecords]=useState([]);
+        const [loading,setloading] = useState(false);
+        const fectdata =async()=>{
+            setloading(true)
+            const{data}=await axios.get('http://43.205.1.85:9009/v1/airports');
+            setloading(false);
+            setRecords(data.results);
+        }
+        useEffect(()=>{
+            fectdata()
+        },[])
     return(
         <div>
             <form action="/results.html" method="post" autoComplete="off" noValidate="">
@@ -86,6 +98,18 @@ const SearchForm = () =>{
                                                     {(errors.departureAirport?<div><br/><div  style={{border:1,backgroundColor:"#da70d6"}}><h4><em>Invalid Departure Airport</em></h4></div></div>:null)}
                                                 </div> <i
                                                     className="fas fa-map-marker-alt input-icon"></i>
+                                                    <div style={{backgroundColor:'GrayText'}}>
+                                                    <ul>
+                                                     {records.map((record,index)=>{
+                                                           const isEven = index%2;
+                                                           return(
+                                                                <li key={index} style={{backgroundColor:isEven?'black':'white',color: isEven ? 'white' : 'black'}}>
+                                                             {record.name}
+                                                                </li>
+                                                                 );
+                                                          })}
+                                                    </ul>
+                                                    </div>
                                             </label>
                                             <div className="col p-0 row m-0 mb-2 dates"><label
                                                     className="col-sm-6 p-0 pr-sm-3 date_input">
