@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
 import moment from "moment";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import AirportSuggestions from "./AirportSuggestions";
 const SearchForm = () =>{
         const today=moment().format('YYYY-MM-DD').toString();
         const tomrrow = moment().add(1,'days').format('YYYY-MM-DD').toString();
-        const [departureAirport,setDepartureAirport] = useState("Dehli");
+        const [departureAirport,setDepartureAirport] = useState("Delhi");
         const [checkin,setCheckin] = useState(today);
         const [checkout,setCheckout] = useState(tomrrow);
+        const [airports, setAirports] = useState([]);
+        const navigate = useNavigate();
+        const [filteredAirports, setFilteredAirports] = useState('');
         const [errors,seterrors] =useState( {
             departureAirport:false,
             checkin:false,
@@ -18,8 +23,14 @@ const SearchForm = () =>{
             const {value} = e.target;    
                 setDepartureAirport(value);
                 if(e.target){
-                    seterrors({...errors,departureAirport:false})
+                    seterrors({...errors,departureAirport:false});
+                }else{
+                    seterrors({...errors,departureAirport:true});
                 }
+                const filteredAirportsData = airports.filter((airport) => 
+                  airport.name.toLowerCase().includes(e.target.value.toLowerCase()));
+                  setFilteredAirports(filteredAirportsData?? [])
+                  console.log(filteredAirports)
             }
         const checkinHandler = (e) => {
             //event.target.value
@@ -63,7 +74,8 @@ const SearchForm = () =>{
 
        else if(departureAirport && checkin && checkout)
         {
-            alert("Form Submitted")
+            alert("Form Submitted");
+            navigate(`/results?departureAirport=${departureAirport}&checkin=${checkin}&checkout=${checkout}`);
         }
         else{
             seterrors({
@@ -74,19 +86,39 @@ const SearchForm = () =>{
         }
             
         }
-        const [records,setRecords]=useState([]);
+        
         const [loading,setloading] = useState(false);
-        const fectdata =async()=>{
-            setloading(true)
-            const{data}=await axios.get('http://43.205.1.85:9009/v1/airports');
-            setloading(false);
-            setRecords(data.results);
-        }
-        useEffect(()=>{
-            fectdata()
-        },[])
+
+        
+        
+          useEffect(() => {
+            getAirport();
+          }, []);
+        
+          const selectAirport = (value) => {
+            setDepartureAirport(value);
+            setFilteredAirports([]);
+          };
+        const getAirport = async () => {
+            try {
+              const { data, status } = await axios.get(
+                "http://43.205.1.85:9009/v1/airports"
+              );
+              if (status === 200 && data) {
+                setAirports(data?.results ?? []);
+              } else {
+                setAirports([]);
+              }
+              setloading(false);
+            } catch (error) {
+              setloading(false);
+              console.log(error.message);
+            }
+          };
+        
     return(
         <div>
+            {loading && <h3>loading..</h3>}
             <form action="/results.html" method="post" autoComplete="off" noValidate="">
                                         <div className="options row m-0"><label className="col-12 col-xl-3 p-0 mr-xl-3 mb-2">
                                                 <div className="heading mb-1">Departure Airport</div>
@@ -98,7 +130,7 @@ const SearchForm = () =>{
                                                     {(errors.departureAirport?<div><br/><div  style={{border:1,backgroundColor:"#da70d6"}}><h4><em>Invalid Departure Airport</em></h4></div></div>:null)}
                                                 </div> <i
                                                     className="fas fa-map-marker-alt input-icon"></i>
-                                                    <div style={{backgroundColor:'GrayText'}}>
+                                                    {/* <div style={{backgroundColor:'GrayText'}}>
                                                     <ul>
                                                      {records.map((record,index)=>{
                                                            const isEven = index%2;
@@ -109,7 +141,12 @@ const SearchForm = () =>{
                                                                  );
                                                           })}
                                                     </ul>
-                                                    </div>
+                                                    </div> */}
+                                                    {loading?<h1>Loading</h1>:null}
+                                                    <AirportSuggestions 
+                                                    airports={filteredAirports}
+                                                    selectAirport={selectAirport}
+                                                    />
                                             </label>
                                             <div className="col p-0 row m-0 mb-2 dates"><label
                                                     className="col-sm-6 p-0 pr-sm-3 date_input">
