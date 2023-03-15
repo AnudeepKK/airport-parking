@@ -132,11 +132,10 @@ const SearchForm = () =>{
                                                     
                                                 </div> <i
                                                     className="fas fa-map-marker-alt input-icon"></i>
-                                                    {loading?<h1>loading...</h1>:null}
-                                                    <AirportSuggestions 
-                                                    airports={filteredAirports}
-                                                    selectAirport={selectAirport}
-                                                    />
+                                                    {loading ?<h1>Loading</h1>:null}
+                            {(errors && errors.departureAirport)? <h4 style={{color:"white",backgroundColor:"Highlight"}}>Invalid Departure Airport</h4>:null}
+                            <AirportSuggestions airports={filteredAirports} selectAirport={selectAirport} />
+                                                    
                                             </label>
                                             <div className="col p-0 row m-0 mb-2 dates"><label
                                                     className="col-sm-6 p-0 pr-sm-3 date_input">
