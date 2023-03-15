@@ -6,7 +6,7 @@ import AirportSuggestions from "../components/AirportSuggestions";
 const SearchForm = () =>{
         const today=moment().format('YYYY-MM-DD').toString();
         const tomrrow = moment().add(1,'days').format('YYYY-MM-DD').toString();
-        const [departureAirport,setDepartureAirport] = useState("Delhi");
+        const [departureAirport,setDepartureAirport] = useState("");
         const [checkin,setCheckin] = useState(today);
         const [checkout,setCheckout] = useState(tomrrow);
         const [airports, setAirports] = useState([]);
@@ -71,7 +71,9 @@ const SearchForm = () =>{
             seterrors((err) => ({ ...err, checkout: true }))
 
         }
-
+        else if(errors.departureAirport){
+            alert('Invalid Airport Departure')
+        }
        else if(departureAirport && checkin && checkout)
         {
             alert("Form Submitted");
@@ -119,7 +121,6 @@ const SearchForm = () =>{
         
     return(
         <div>
-            {loading && <h3>loading..</h3>}
             <form action="/results.html" method="post" autoComplete="off" noValidate="">
                                         <div className="options row m-0"><label className="col-12 col-xl-3 p-0 mr-xl-3 mb-2">
                                                 <div className="heading mb-1">Departure Airport</div>
@@ -128,7 +129,7 @@ const SearchForm = () =>{
                                                     value={departureAirport}  
                                                     placeholder="Departure Airport" 
                                                     className="placeholder placeholder-airport" />
-                                                    {(errors.departureAirport?<div><br/><div  style={{border:1,backgroundColor:"#da70d6"}}><h4><em>Invalid Departure Airport</em></h4></div></div>:null)}
+                                                    
                                                 </div> <i
                                                     className="fas fa-map-marker-alt input-icon"></i>
                                                     {loading?<h1>loading...</h1>:null}
