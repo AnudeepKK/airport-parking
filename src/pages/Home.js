@@ -26,7 +26,7 @@ const SearchForm = () =>{
                     seterrors({...errors,departureAirport:false});
                 }else{
                     seterrors({...errors,departureAirport:true});
-                    alert("There is a error")
+                    return(<h1>Invalid Departure Airport</h1>)
                 }
                 const filteredAirportsData = airports.filter((airport) => 
                   airport.name.toLowerCase().includes(e.target.value.toLowerCase()));
@@ -131,7 +131,7 @@ const SearchForm = () =>{
                                                 </div> <i
                                                     className="fas fa-map-marker-alt input-icon"></i>
                                                     {loading ?<h1>loading...</h1>:null}
-                            {(errors && errors.departureAirport)? <h4 style={{color:"white",backgroundColor:"Highlight"}}>Invalid Departure Airport</h4>:null}
+                            {(errors && errors.departureAirport)? <div><br/><h4 style={{color:"white",backgroundColor:"Highlight"}}>Invalid Departure Airport</h4></div>:null}
                             <AirportSuggestions airports={filteredAirports} selectAirport={selectAirport} />
                                                     
                                             </label>
