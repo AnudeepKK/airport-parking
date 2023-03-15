@@ -111,7 +111,7 @@ const SearchForm = () =>{
               }
               setloading(false);
             } catch (error) {
-              setloading(false);
+              setloading(true);
               console.log(error.message);
             }
           };
