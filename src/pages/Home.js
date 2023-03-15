@@ -131,18 +131,6 @@ const SearchForm = () =>{
                                                     {(errors.departureAirport?<div><br/><div  style={{border:1,backgroundColor:"#da70d6"}}><h4><em>Invalid Departure Airport</em></h4></div></div>:null)}
                                                 </div> <i
                                                     className="fas fa-map-marker-alt input-icon"></i>
-                                                    {/* <div style={{backgroundColor:'GrayText'}}>
-                                                    <ul>
-                                                     {records.map((record,index)=>{
-                                                           const isEven = index%2;
-                                                           return(
-                                                                <li key={index} style={{backgroundColor:isEven?'black':'white',color: isEven ? 'white' : 'black'}}>
-                                                             {record.name}
-                                                                </li>
-                                                                 );
-                                                          })}
-                                                    </ul>
-                                                    </div> */}
                                                     {loading?<h1>loading...</h1>:null}
                                                     <AirportSuggestions 
                                                     airports={filteredAirports}
