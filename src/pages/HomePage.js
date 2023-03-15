@@ -1,4 +1,4 @@
-import Footer from "./Footer";
+import Footer from "../component/Footer";
 // import Header from "./Header";
 import SearchForm from "./SearchForm";
 

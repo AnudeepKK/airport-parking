@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import moment from "moment";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import AirportSuggestions from "./AirportSuggestions";
+import AirportSuggestions from "../component/AirportSuggestions";
 const SearchForm = () =>{
         const today=moment().format('YYYY-MM-DD').toString();
         const tomrrow = moment().add(1,'days').format('YYYY-MM-DD').toString();
