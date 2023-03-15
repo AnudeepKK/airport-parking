@@ -71,7 +71,9 @@ const SearchForm = () =>{
             seterrors((err) => ({ ...err, checkout: true }))
 
         }
-
+        else if(errors.departureAirport){
+            alert('Invalid Airport Departure')
+        }
        else if(departureAirport && checkin && checkout)
         {
             alert("Form Submitted");
