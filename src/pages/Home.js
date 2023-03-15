@@ -143,7 +143,7 @@ const SearchForm = () =>{
                                                           })}
                                                     </ul>
                                                     </div> */}
-                                                    {loading?<h1>Loading</h1>:null}
+                                                    {loading?<h1>loading...</h1>:null}
                                                     <AirportSuggestions 
                                                     airports={filteredAirports}
                                                     selectAirport={selectAirport}
