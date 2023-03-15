@@ -129,7 +129,7 @@ const SearchForm = () =>{
                                                     value={departureAirport}  
                                                     placeholder="Departure Airport" 
                                                     className="placeholder placeholder-airport" />
-                                                    {(errors.departureAirport?<div><br/><div  style={{border:1,backgroundColor:"#da70d6"}}><h4><em>Invalid Departure Airport</em></h4></div></div>:null)}
+                                                    
                                                 </div> <i
                                                     className="fas fa-map-marker-alt input-icon"></i>
                                                     {loading?<h1>loading...</h1>:null}
