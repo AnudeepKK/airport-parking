@@ -10,7 +10,7 @@ const SearchForm = () =>{
         const [checkin,setCheckin] = useState(today);
         const [checkout,setCheckout] = useState(tomrrow);
         const [airports, setAirports] = useState([]);
-        const navigate = useNavigate();
+        // const navigate = useNavigate();
         const [filteredAirports, setFilteredAirports] = useState('');
         const [errors,seterrors] =useState( {
             departureAirport:false,
@@ -75,7 +75,8 @@ const SearchForm = () =>{
        else if(departureAirport && checkin && checkout)
         {
             alert("Form Submitted");
-            navigate(`/results?departureAirport=${departureAirport}&checkin=${checkin}&checkout=${checkout}`);
+            // navigate(`/results?departureAirport=${departureAirport}&checkin=${checkin}&checkout=${checkout}`);
+            window.location.href = `/results?departureAirport=${departureAirport}&checkin=${checkin}&checkout=${checkout}`
         }
         else{
             seterrors({
