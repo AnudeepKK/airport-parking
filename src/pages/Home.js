@@ -26,6 +26,7 @@ const SearchForm = () =>{
                     seterrors({...errors,departureAirport:false});
                 }else{
                     seterrors({...errors,departureAirport:true});
+                    alert("There is a error")
                 }
                 const filteredAirportsData = airports.filter((airport) => 
                   airport.name.toLowerCase().includes(e.target.value.toLowerCase()));
@@ -83,7 +84,6 @@ const SearchForm = () =>{
                 checkin:!checkin,
                 checkout:!checkout
             })
-            alert("There is a error")
         }
             
         }
