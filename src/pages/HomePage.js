@@ -1,5 +1,3 @@
-import Footer from "../component/Footer";
-// import Header from "./Header";
 import SearchForm from "./SearchForm";
 
 function HomePage() {
@@ -93,7 +91,6 @@ function HomePage() {
                     </section>
                 </us-page-home>
             </div>
-            <Footer/>
         </div>
     </div>
 
