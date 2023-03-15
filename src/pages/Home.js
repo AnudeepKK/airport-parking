@@ -144,7 +144,7 @@ const SearchForm = () =>{
                                                         <input name="checkin" 
                                                         type="date"
                                                          onChange={checkinHandler} 
-                                                         placeholder="Parking Check-Out"
+                                                         placeholder="Parking Check-In"
                                                          value={checkin}
                                                           className="placeholder placeholder-airport"
                                                            style={{width:'100%'}}/>
