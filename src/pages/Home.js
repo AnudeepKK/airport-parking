@@ -83,6 +83,7 @@ const SearchForm = () =>{
                 checkin:!checkin,
                 checkout:!checkout
             })
+            alert("There is a error")
         }
             
         }
