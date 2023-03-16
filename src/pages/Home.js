@@ -113,7 +113,7 @@ const SearchForm = () =>{
               }
               setloading(false);
             } catch (error) {
-              setloading(true);
+              setloading(false);
               console.log(error.message);
             }
           };
