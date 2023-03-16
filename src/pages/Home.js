@@ -147,7 +147,7 @@ const SearchForm = () =>{
                                                          value={checkin}
                                                           className="placeholder placeholder-airport"
                                                            style={{width:'100%'}}/>
-                                                        {(errors.checkin?<div><br/><div  style={{border:1,backgroundColor:"#da70d6"}}><h4><em>Invalid check-in date</em></h4></div></div>:null)}
+                                                        {(errors.checkin?<div><br/><div  style={{border:1,backgroundColor:"#da70d6"}}><h4><em>Invalid checkin Date</em></h4></div></div>:null)}
                                                     </div> 
                                                 </label> <label className="col-sm-6 p-0 pl-sm-0 date_input">
                                                     <div className="heading mb-1">Parking Check-Out</div>
@@ -158,7 +158,7 @@ const SearchForm = () =>{
                                                           value={checkout}
                                                           className="placeholder placeholder-airport" 
                                                           style={{width:"100%"}}/>
-                                                        {(errors.checkout?<div><br/><div  style={{border:1,backgroundColor:"#da70d6"}}><h4><em>Invalid check-out date</em></h4></div></div>:null)}
+                                                        {(errors.checkout?<div><br/><div  style={{border:1,backgroundColor:"#da70d6"}}><h4><em>Invalid checkout Date</em></h4></div></div>:null)}
                                                 </label></div>
                                             <div className="col-12 col-xl-2 p-0 pl-xl-3 my-3 my-xl-0">
                                                 <div className="d-none d-xl-block heading mb-1 invisible">Submit</div>
