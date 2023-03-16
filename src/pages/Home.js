@@ -10,6 +10,7 @@ const SearchForm = () =>{
         const [checkin,setCheckin] = useState(today);
         const [checkout,setCheckout] = useState(tomrrow);
         const [airports, setAirports] = useState([]);
+        const [loading,setloading] = useState(false);
         // const navigate = useNavigate();
         const [filteredAirports, setFilteredAirports] = useState('');
         const [errors,seterrors] =useState( {
@@ -88,7 +89,7 @@ const SearchForm = () =>{
             
         }
         
-        const [loading,setloading] = useState(false);
+       
 
         
         
